@@ -4,9 +4,11 @@ Abstract class with the abstract method process that will have the processes of 
 Also, it tells if the camera is enabled or not. 
 
     Typical usage example:
+    
     class ExampleClass(Base_processor):
 """
 from abc import ABC, abstractmethod
+
 
 class Base_processor(ABC):
     """The base processor of a camera simulator
@@ -16,7 +18,7 @@ class Base_processor(ABC):
     """
 
     def __init__(self):
-        """Inits base_processor with True enable."""
+        """Inits base_processor with enable True."""
         self._enable = True
 
     @abstractmethod
@@ -34,4 +36,3 @@ class Base_processor(ABC):
     def enable(self, _enable):
         """Setter of the enable property"""
         self._enable = _enable
-

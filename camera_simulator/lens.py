@@ -10,15 +10,19 @@ Iterator class that simulates the lens of a camera given the dimension height an
 
 from base_processor import Base_processor
 
+
 class Lens(Base_processor):
     """The lens of a camera simulator
 
     Attributes:
         _height: An integer indicating the height of the lens.
         _width: An integer indicating the width of the lens.
+
+    Raises:
+        TypeError: The height and the width must be Integers.
     """
 
-    def __init__(self,_height,_width):
+    def __init__(self, _height, _width):
         """Inits Lens with the _height and the _width."""
         if type(_height) is not int or type(_width) is not int:
             raise TypeError("The height and the width must be Integers")
@@ -31,35 +35,53 @@ class Lens(Base_processor):
         """Getter of the height property"""
         return self._height
 
-    @height.setter 
+    @height.setter
     def height(self, _height):
-        """Setter of the height property"""
+        """Setter of the height property
+        Args:
+            _height: An integer indicating the new height value of the lens.
+
+        Returns:
+            The new height value of the lens.
+
+        Raises:
+            TypeError: The height must be an Integer."""
+
         if type(_height) is not int:
             raise TypeError("The height must be an Integer")
         self._height = _height
-    
+
     # Width Property
     @property
     def width(self):
         """Getter of the width property"""
         return self._width
 
-    @width.setter 
+    @width.setter
     def width(self, _width):
-        """Setter of the width property"""
+        """Setter of the width property
+        Args:
+            _width: An integer indicating the new width value of the lens.
+
+        Returns:
+            The new width value of the lens.
+
+        Raises:
+            TypeError: The width must be an Integer."""
+
         if type(_width) is not int:
             raise TypeError("The width must be an Integer")
         self._width = _width
 
     def process(self, image):
         """Compares lens dimensions and an image dimensions.
-        
-        Process method that compares the dimensions of an image with the Lens height and width.
-        
-        Args:
-            image: A 2D numpy data of the image.
 
-        Returns: 
+        Process method that compares the dimensions of an image with the Lens height and width.
+
+        Args:
+            image: 2D numpy data of the image.
+
+        Returns:
             The 2D numpy data of the image.
 
         Raises:
@@ -71,7 +93,10 @@ class Lens(Base_processor):
         return image
 
     def decorator(f):
-        def simultaneous(*args,**kargs):
-            Lens.process(*args,**kargs)
-            return f(*args,**kargs)
+        """Decorator to have Lens process method at the same of other method."""
+
+        def simultaneous(*args, **kargs):
+            Lens.process(*args, **kargs)
+            return f(*args, **kargs)
+
         return simultaneous
