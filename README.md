@@ -2,10 +2,10 @@
 Basic simulation of a lens and a sensor of a camera. 
 
 ## Base Work
-The library has a principal folder called camera_simulator with the classes base_processor, lens and sensor. Each class is on its own file in order to be clear of each part of the camera simulator. 
+The library has a principal folder called camera_simulator with the files base_processor, lens and sensor. Each class is on its own file in order to be clear of each part of the camera simulator. 
 The base processor has the property enable that is initialized as True and the library abc is used to create the abstract method that will later be used in the sensor and lens classes. 
 The lens class is initialized with the values height and width properties given. If the height or width values are not integers it raises a TypeError. The process method raises a value error if the dimensions of the image and the lens are different, otherwise returns the image. 
-The sensor class is initialized with the gain property given (other values are added later in the advance python section). The processor multiplies the value of the image by the gain of the lens. 
+The sensor class is initialized with the gain property given (other values are added later in the advance python section). The processor multiplies the value of the image by the gain of the sensor. 
 All files, classes and methods doctrings are made following the Google standard format and formated using black code formatter. 
 
 ## Specific skills
@@ -30,10 +30,10 @@ It is test:
 ## Advanced Python
 
 ### Decorator
-The method decorator is created to call the method process in Lens before a given function f. The idea of this method is to call the lens process before the sensor process, however, when the lens process is called in the sensor class it needs the lens height and width. To solve this I initiate the sensor with a lens object also I create a update lens in case the value of the height or width is change in the lens.
+The method decorator is created to call the Lens' method process before a given function f. The idea of this method is to call the lens process before the sensor process, however, when the lens process is called in the sensor class it needs the lens height and width. To solve this I initiate the sensor with a lens object. Also, there is a lens_update in case the value of the Lens height or width is changed.
 
 ### Sensor Iterator
-To do this I add the methods __iter__ and __next__ in the Sensor class. In the next method the returned image is the original plus the index of the iteration. 
+To do the sensor class an iterator the methods __iter__ and __next__ are added in the Sensor class. In the __next__ method the returned image is the original plus the index of the iteration. 
 
 ### mymean function
 The mymean funcion is in the sensor file at the end. The image height, width and data are random, as well as the sensor gain. Then, the sensor is iterated, and as each iteration there is a new matrix, they are saved in a list. Then, I used the numpy mean function to find the mean of the matrixes. 
