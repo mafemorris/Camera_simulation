@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to Camera_simulator’s documentation! &mdash; Camera_simulator 0.0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="#" class="icon icon-home"> Camera_simulator
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Welcome to Camera_simulator’s documentation!</a></li>
+<li><a class="reference internal" href="#camera-simulator-package">camera_simulator package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-camera_simulator.base_processor">camera_simulator.base_processor module</a></li>
+<li><a class="reference internal" href="#module-camera_simulator.lens">camera_simulator.lens module</a></li>
+<li><a class="reference internal" href="#module-camera_simulator.sensor">camera_simulator.sensor module</a></li>
+<li><a class="reference internal" href="#module-camera_simulator">Module contents</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Camera_simulator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+      <li>Welcome to Camera_simulator’s documentation!</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="welcome-to-camera-simulator-s-documentation">
+<h1>Welcome to Camera_simulator’s documentation!<a class="headerlink" href="#welcome-to-camera-simulator-s-documentation" title="Permalink to this headline"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="camera-simulator-package">
+<h1>camera_simulator package<a class="headerlink" href="#camera-simulator-package" title="Permalink to this headline"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-camera_simulator.base_processor">
+<span id="camera-simulator-base-processor-module"></span><h2>camera_simulator.base_processor module<a class="headerlink" href="#module-camera_simulator.base_processor" title="Permalink to this headline"></a></h2>
+<p>Base processor of a camera simulator</p>
+<p>Abstract class with the abstract method process that will have the processes of the camera compounds.
+Also, it tells if the camera is enabled or not.</p>
+<blockquote>
+<div><p>Typical usage example:</p>
+<p>class ExampleClass(Base_processor):</p>
+</div></blockquote>
+<dl class="py class">
+<dt class="sig sig-object py" id="camera_simulator.base_processor.Base_processor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camera_simulator.base_processor.</span></span><span class="sig-name descname"><span class="pre">Base_processor</span></span><a class="reference internal" href="_modules/camera_simulator/base_processor.html#Base_processor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camera_simulator.base_processor.Base_processor" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>The base processor of a camera simulator</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camera_simulator.base_processor.Base_processor._enable">
+<span class="sig-name descname"><span class="pre">_enable</span></span><a class="headerlink" href="#camera_simulator.base_processor.Base_processor._enable" title="Permalink to this definition"></a></dt>
+<dd><p>A boolean indicating if the base processor is enabled or not.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="camera_simulator.base_processor.Base_processor.enable">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">enable</span></span><a class="headerlink" href="#camera_simulator.base_processor.Base_processor.enable" title="Permalink to this definition"></a></dt>
+<dd><p>Getter of the enable property</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camera_simulator.base_processor.Base_processor.process">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camera_simulator/base_processor.html#Base_processor.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camera_simulator.base_processor.Base_processor.process" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract method of the process of the camera compoounds.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-camera_simulator.lens">
+<span id="camera-simulator-lens-module"></span><h2>camera_simulator.lens module<a class="headerlink" href="#module-camera_simulator.lens" title="Permalink to this headline"></a></h2>
+<p>Lens of a camera simulator</p>
+<p>Iterator class that simulates the lens of a camera given the dimension height and width of the lens.</p>
+<blockquote>
+<div><p>Typical usage example:</p>
+<p>lens1 = Lens(height,width)
+processed_img = sensor1.process(image)</p>
+</div></blockquote>
+<dl class="py class">
+<dt class="sig sig-object py" id="camera_simulator.lens.Lens">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camera_simulator.lens.</span></span><span class="sig-name descname"><span class="pre">Lens</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_width</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camera_simulator/lens.html#Lens"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camera_simulator.lens.Lens" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">base_processor.Base_processor</span></code></p>
+<p>The lens of a camera simulator</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camera_simulator.lens.Lens._height">
+<span class="sig-name descname"><span class="pre">_height</span></span><a class="headerlink" href="#camera_simulator.lens.Lens._height" title="Permalink to this definition"></a></dt>
+<dd><p>An integer indicating the height of the lens.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camera_simulator.lens.Lens._width">
+<span class="sig-name descname"><span class="pre">_width</span></span><a class="headerlink" href="#camera_simulator.lens.Lens._width" title="Permalink to this definition"></a></dt>
+<dd><p>An integer indicating the width of the lens.</p>
+</dd></dl>
+
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – The height and the width must be Integers.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="camera_simulator.lens.Lens.decorator">
+<span class="sig-name descname"><span class="pre">decorator</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/camera_simulator/lens.html#Lens.decorator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camera_simulator.lens.Lens.decorator" title="Permalink to this definition"></a></dt>
+<dd><p>Decorator to have Lens process method at the same of other method.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="camera_simulator.lens.Lens.height">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">height</span></span><a class="headerlink" href="#camera_simulator.lens.Lens.height" title="Permalink to this definition"></a></dt>
+<dd><p>Getter of the height property</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camera_simulator.lens.Lens.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camera_simulator/lens.html#Lens.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camera_simulator.lens.Lens.process" title="Permalink to this definition"></a></dt>
+<dd><p>Compares lens dimensions and an image dimensions.</p>
+<p>Process method that compares the dimensions of an image with the Lens height and width.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>image</strong> – 2D numpy data of the image.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The 2D numpy data of the image.</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – The size of the image is different to the lens height and width.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="camera_simulator.lens.Lens.width">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">width</span></span><a class="headerlink" href="#camera_simulator.lens.Lens.width" title="Permalink to this definition"></a></dt>
+<dd><p>Getter of the width property</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-camera_simulator.sensor">
+<span id="camera-simulator-sensor-module"></span><h2>camera_simulator.sensor module<a class="headerlink" href="#module-camera_simulator.sensor" title="Permalink to this headline"></a></h2>
+<p>Sensor of a camera simulator</p>
+<p>Iterator class that simulates the sensor of a camera given a sensor gain,
+an image, a lens and the size of the iterator.</p>
+<blockquote>
+<div><p>Typical usage example:</p>
+<p>sensor1 = Sensor(gain,image,lens,10)
+processed_img = sensor1.process(image)
+for i in sensor1:</p>
+<blockquote>
+<div><p>print(i)</p>
+</div></blockquote>
+</div></blockquote>
+<dl class="py class">
+<dt class="sig sig-object py" id="camera_simulator.sensor.Sensor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">camera_simulator.sensor.</span></span><span class="sig-name descname"><span class="pre">Sensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_gain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lens</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camera_simulator/sensor.html#Sensor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camera_simulator.sensor.Sensor" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">base_processor.Base_processor</span></code></p>
+<p>The sensor of a camera simulator that can be used as an iterator.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camera_simulator.sensor.Sensor._gain">
+<span class="sig-name descname"><span class="pre">_gain</span></span><a class="headerlink" href="#camera_simulator.sensor.Sensor._gain" title="Permalink to this definition"></a></dt>
+<dd><p>An integer indicating the gain of the sensor.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camera_simulator.sensor.Sensor.image">
+<span class="sig-name descname"><span class="pre">image</span></span><a class="headerlink" href="#camera_simulator.sensor.Sensor.image" title="Permalink to this definition"></a></dt>
+<dd><p>2D numpy data of the image.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camera_simulator.sensor.Sensor.lens">
+<span class="sig-name descname"><span class="pre">lens</span></span><a class="headerlink" href="#camera_simulator.sensor.Sensor.lens" title="Permalink to this definition"></a></dt>
+<dd><p>Object of type Lens.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="camera_simulator.sensor.Sensor._max">
+<span class="sig-name descname"><span class="pre">_max</span></span><a class="headerlink" href="#camera_simulator.sensor.Sensor._max" title="Permalink to this definition"></a></dt>
+<dd><p>Maximum value of the iterator.</p>
+</dd></dl>
+
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>The gain and the maximum iterator must be Integers</strong> – </p></li>
+<li><p><strong>The image must be a numpy array</strong> – </p></li>
+<li><p><strong>The lens must be a Lens object</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="camera_simulator.sensor.Sensor.gain">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">gain</span></span><a class="headerlink" href="#camera_simulator.sensor.Sensor.gain" title="Permalink to this definition"></a></dt>
+<dd><p>Getter of the gain property</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camera_simulator.sensor.Sensor.lens_update">
+<span class="sig-name descname"><span class="pre">lens_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lens</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/camera_simulator/sensor.html#Sensor.lens_update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camera_simulator.sensor.Sensor.lens_update" title="Permalink to this definition"></a></dt>
+<dd><p>Updates the value of the height and the width in case it was changed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camera_simulator.sensor.Sensor.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#camera_simulator.sensor.Sensor.process" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract method of the process of the camera compoounds.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="camera_simulator.sensor.mymean">
+<span class="sig-prename descclassname"><span class="pre">camera_simulator.sensor.</span></span><span class="sig-name descname"><span class="pre">mymean</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/camera_simulator/sensor.html#mymean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#camera_simulator.sensor.mymean" title="Permalink to this definition"></a></dt>
+<dd><p>The mean of an image through a Sensor object.</p>
+</dd></dl>
+
+</section>
+<section id="module-camera_simulator">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-camera_simulator" title="Permalink to this headline"></a></h2>
+<p>Camera simulator with sensor and lens.</p>
+</section>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Mafe Morris.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
