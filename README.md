@@ -27,6 +27,9 @@ It tests:
  - The decorator from the Lens class in the Sensor process method.
  - The mymean function uses a given seed for the gain and the image, data and dimensions, that are created randomly. 
 
+### Docker 
+The dockerfile starts from python:3.8 to avoid the python installation that is a quite slow. I didn't do a requirements.txt file in this case because there are only two modules needed (pytest and numpy). I copied the whole package and installed the project. Then, the unit tests are performed and finally there is message that the image is complete. 
+
 ## Advanced Python
 
 ### Decorator
