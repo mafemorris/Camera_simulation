@@ -1,0 +1,4 @@
+include Tutorial.ipynb
+include Dockerfile
+include docs/*/*/*
+include camera_simulator/*
