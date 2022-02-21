@@ -1,0 +1,8 @@
+README.md
+setup.py
+camera_simulator/python_test_Maf_Morris.egg-info/PKG-INFO
+camera_simulator/python_test_Maf_Morris.egg-info/SOURCES.txt
+camera_simulator/python_test_Maf_Morris.egg-info/dependency_links.txt
+camera_simulator/python_test_Maf_Morris.egg-info/entry_points.txt
+camera_simulator/python_test_Maf_Morris.egg-info/requires.txt
+camera_simulator/python_test_Maf_Morris.egg-info/top_level.txt
