@@ -6,7 +6,7 @@ requirements = [
 
 setup(
     name="python-test-Mafe-Morris",
-    version="0.0.1",
+    version="1",
     author="Maria Fernanda Morris",
     author_email="mafemorris99@gmail.com",
     description="Basic lens and sensor simulator",
