@@ -35,14 +35,14 @@ class Sensor(Base_processor):
 
     def __init__(self, _gain, image, lens, _max=10):
         """Inits Sensor with the _gain, image, lens height and width, and the value of the maximum iterator"""
-        if not isinstance(_gain,int) or not isinstance(_max,int):
+        if not isinstance(_gain, int) or not isinstance(_max, int):
             raise TypeError("The gain and the maximum iterator must be Integers")
-        if not isinstance(image,np.ndarray):
+        if not isinstance(image, np.ndarray):
             raise TypeError("The image must be a numpy array")
         if (
             not hasattr(lens, "height")
             and not hasattr(lens, "width")
-            and not isinstance(type(lens),ABCMeta)
+            and not isinstance(type(lens), ABCMeta)
         ):
             raise TypeError("The lens must be a Lens object")
         self._gain = _gain
@@ -84,7 +84,7 @@ class Sensor(Base_processor):
         Raises:
             TypeError: The gain must be an Integer."""
 
-        if not isinstance(_gain,int):
+        if not isinstance(_gain, int):
             raise TypeError("The gain must be an Integer")
         self._gain = _gain
 
@@ -106,7 +106,7 @@ class Sensor(Base_processor):
         return self._gain * image
 
 
-def mymean(im_height=None,im_width=None,seed=None):
+def mymean(im_height=None, im_width=None, seed=None):
     """The mean of an image through a Sensor object.
 
     Args:
@@ -130,16 +130,18 @@ def mymean(im_height=None,im_width=None,seed=None):
     result = np.mean(sensors, axis=0)
     return result
 
+
 def concurrent():
     """Uses the concurrent package with max 5 workers to call mymean function 100 times, with a 10x10 image."""
     with futures.ProcessPoolExecutor(max_workers=5) as pool:
-        fs = [pool.submit(mymean,10,10) for i in range(100)]
+        fs = [pool.submit(mymean, 10, 10) for i in range(100)]
         for f in futures.as_completed(fs):
             try:
                 matrixes = f.result()
             except ValueError:
                 continue
             print(matrixes)
-        
-if __name__ == '__main__':
+
+
+if __name__ == "__main__":
     concurrent()

@@ -78,6 +78,7 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">lens</span> <span class="kn">import</span> <span class="n">Lens</span>
 <span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span>
+<span class="kn">from</span> <span class="nn">concurrent</span> <span class="kn">import</span> <span class="n">futures</span>
 
 
 <div class="viewcode-block" id="Sensor"><a class="viewcode-back" href="../../index.html#camera_simulator.sensor.Sensor">[docs]</a><span class="k">class</span> <span class="nc">Sensor</span><span class="p">(</span><span class="n">Base_processor</span><span class="p">):</span>
@@ -87,7 +88,7 @@
 <span class="sd">        _gain: An integer indicating the gain of the sensor.</span>
 <span class="sd">        image: 2D numpy data of the image.</span>
 <span class="sd">        lens: Object of type Lens.</span>
-<span class="sd">        _max: Maximum value of the iterator.</span>
+<span class="sd">        _max: An integer of the maximum value of the iterator.</span>
 
 <span class="sd">    Raises:</span>
 <span class="sd">        The gain and the maximum iterator must be Integers</span>
@@ -97,14 +98,14 @@
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_gain</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">lens</span><span class="p">,</span> <span class="n">_max</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Inits Sensor with the _gain, image, lens height and width, and the value of the maximum iterator&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">_gain</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="nb">int</span> <span class="ow">or</span> <span class="nb">type</span><span class="p">(</span><span class="n">_max</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">_gain</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">_max</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;The gain and the maximum iterator must be Integers&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">image</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;The image must be a numpy array&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span>
             <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">lens</span><span class="p">,</span> <span class="s2">&quot;height&quot;</span><span class="p">)</span>
             <span class="ow">and</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">lens</span><span class="p">,</span> <span class="s2">&quot;width&quot;</span><span class="p">)</span>
-            <span class="ow">and</span> <span class="nb">type</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">lens</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">ABCMeta</span>
+            <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">lens</span><span class="p">),</span> <span class="n">ABCMeta</span><span class="p">)</span>
         <span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;The lens must be a Lens object&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_gain</span> <span class="o">=</span> <span class="n">_gain</span>
@@ -146,7 +147,7 @@
 <span class="sd">        Raises:</span>
 <span class="sd">            TypeError: The gain must be an Integer.&quot;&quot;&quot;</span>
 
-        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">_gain</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">_gain</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;The gain must be an Integer&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_gain</span> <span class="o">=</span> <span class="n">_gain</span>
 
@@ -168,11 +169,21 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_gain</span> <span class="o">*</span> <span class="n">image</span></div>
 
 
-<div class="viewcode-block" id="mymean"><a class="viewcode-back" href="../../index.html#camera_simulator.sensor.mymean">[docs]</a><span class="k">def</span> <span class="nf">mymean</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;The mean of an image through a Sensor object.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="mymean"><a class="viewcode-back" href="../../index.html#camera_simulator.sensor.mymean">[docs]</a><span class="k">def</span> <span class="nf">mymean</span><span class="p">(</span><span class="n">im_height</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">im_width</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The mean of an image through a Sensor object.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">            seed: The random seed if it is needed.</span>
+<span class="sd">            im_heiht: An integer indicating the image height.</span>
+<span class="sd">            im_width: An integer indicating the image height.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Random image and gain</span>
-    <span class="n">im_height</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-    <span class="n">im_width</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">seed</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">im_height</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">im_height</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">im_width</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">im_width</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
     <span class="n">gain</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
     <span class="n">lens</span> <span class="o">=</span> <span class="n">Lens</span><span class="p">(</span><span class="n">im_height</span><span class="p">,</span> <span class="n">im_width</span><span class="p">)</span>
     <span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">im_height</span><span class="p">,</span> <span class="n">im_width</span><span class="p">))</span>
@@ -181,6 +192,22 @@
 
     <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sensors</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="concurrent"><a class="viewcode-back" href="../../index.html#camera_simulator.sensor.concurrent">[docs]</a><span class="k">def</span> <span class="nf">concurrent</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Uses the concurrent package with max 5 workers to call mymean function 100 times, with a 10x10 image.&quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="n">futures</span><span class="o">.</span><span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+        <span class="n">fs</span> <span class="o">=</span> <span class="p">[</span><span class="n">pool</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">mymean</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)]</span>
+        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">futures</span><span class="o">.</span><span class="n">as_completed</span><span class="p">(</span><span class="n">fs</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">matrixes</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">matrixes</span><span class="p">)</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">concurrent</span><span class="p">()</span>
 </pre></div>
 
            </div>
