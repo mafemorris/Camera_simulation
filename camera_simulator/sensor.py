@@ -15,6 +15,7 @@ from base_processor import Base_processor
 import numpy as np
 from lens import Lens
 from abc import ABCMeta
+from concurrent import futures
 
 
 class Sensor(Base_processor):
@@ -24,7 +25,7 @@ class Sensor(Base_processor):
         _gain: An integer indicating the gain of the sensor.
         image: 2D numpy data of the image.
         lens: Object of type Lens.
-        _max: Maximum value of the iterator.
+        _max: An integer of the maximum value of the iterator.
 
     Raises:
         The gain and the maximum iterator must be Integers
@@ -34,14 +35,14 @@ class Sensor(Base_processor):
 
     def __init__(self, _gain, image, lens, _max=10):
         """Inits Sensor with the _gain, image, lens height and width, and the value of the maximum iterator"""
-        if type(_gain) is not int or type(_max) is not int:
+        if not isinstance(_gain,int) or not isinstance(_max,int):
             raise TypeError("The gain and the maximum iterator must be Integers")
-        if type(image) is not np.ndarray:
+        if not isinstance(image,np.ndarray):
             raise TypeError("The image must be a numpy array")
         if (
             not hasattr(lens, "height")
             and not hasattr(lens, "width")
-            and type(type(lens)) is not ABCMeta
+            and not isinstance(type(lens),ABCMeta)
         ):
             raise TypeError("The lens must be a Lens object")
         self._gain = _gain
@@ -83,7 +84,7 @@ class Sensor(Base_processor):
         Raises:
             TypeError: The gain must be an Integer."""
 
-        if type(_gain) is not int:
+        if not isinstance(_gain,int):
             raise TypeError("The gain must be an Integer")
         self._gain = _gain
 
@@ -105,11 +106,21 @@ class Sensor(Base_processor):
         return self._gain * image
 
 
-def mymean():
-    """The mean of an image through a Sensor object."""
+def mymean(im_height=None,im_width=None,seed=None):
+    """The mean of an image through a Sensor object.
+
+    Args:
+            seed: The random seed if it is needed.
+            im_heiht: An integer indicating the image height.
+            im_width: An integer indicating the image height.
+    """
     # Random image and gain
-    im_height = np.random.randint(5, 10)
-    im_width = np.random.randint(5, 10)
+    if seed is not None:
+        np.random.seed(seed)
+    if im_height is None:
+        im_height = np.random.randint(5, 10)
+    if im_width is None:
+        im_width = np.random.randint(5, 10)
     gain = np.random.randint(10)
     lens = Lens(im_height, im_width)
     image = np.random.randint(10, size=(im_height, im_width))
@@ -118,3 +129,17 @@ def mymean():
 
     result = np.mean(sensors, axis=0)
     return result
+
+def concurrent():
+    """Uses the concurrent package with max 5 workers to call mymean function 100 times, with a 10x10 image."""
+    with futures.ProcessPoolExecutor(max_workers=5) as pool:
+        fs = [pool.submit(mymean,10,10) for i in range(100)]
+        for f in futures.as_completed(fs):
+            try:
+                matrixes = f.result()
+            except ValueError:
+                continue
+            print(matrixes)
+        
+if __name__ == '__main__':
+    concurrent()

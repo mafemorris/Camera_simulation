@@ -123,10 +123,9 @@ def test_process_decorator(height, width, expected_error_message):
 def test_mymean():
     """Test if mymean method works properly."""
     np.random.seed(10)
-    im_height = np.random.randint(10)
-    im_width = np.random.randint(10)
+    im_height = np.random.randint(5, 10)
+    im_width = np.random.randint(5, 10)
     gain = np.random.randint(10)
     image = np.random.randint(10, size=(im_height, im_width))
     result = (sum(range(10)) + 10 * image) / 10
-    np.random.seed(10)
-    assert (result == mymean()).all()
+    assert (result == mymean(seed=10)).all()

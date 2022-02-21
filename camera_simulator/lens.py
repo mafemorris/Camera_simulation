@@ -24,7 +24,7 @@ class Lens(Base_processor):
 
     def __init__(self, _height, _width):
         """Inits Lens with the _height and the _width."""
-        if type(_height) is not int or type(_width) is not int:
+        if not isinstance(_height,int) or not isinstance(_width,int):
             raise TypeError("The height and the width must be Integers")
         self._height = _height
         self._width = _width
@@ -47,7 +47,7 @@ class Lens(Base_processor):
         Raises:
             TypeError: The height must be an Integer."""
 
-        if type(_height) is not int:
+        if not isinstance(_height,int):
             raise TypeError("The height must be an Integer")
         self._height = _height
 
@@ -69,7 +69,7 @@ class Lens(Base_processor):
         Raises:
             TypeError: The width must be an Integer."""
 
-        if type(_width) is not int:
+        if not isinstance(_width,int):
             raise TypeError("The width must be an Integer")
         self._width = _width
 
